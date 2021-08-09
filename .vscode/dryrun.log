@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/crennui/Documents/open_uni/c_systems/maman14'
+cc    -c -o assembler.o assembler.c
+cc    -c -o general_utils.o general_utils.c
+gcc -Wall -pedantic -ansi -m32 -g --std=c90 assembler.c general_utils.h general_utils.c -o assembler
+make: Leaving directory '/home/crennui/Documents/open_uni/c_systems/maman14'
+ 

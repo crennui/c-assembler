@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <errno.h>
 #include "general_utils.h"
 
+extern int errno; 
 
 #define FILE_SUFFIX ".as"
 	/*	
@@ -55,19 +59,93 @@
 	first tasks : create the 
 	*/
 
+#define MAX_LABEL_SIZE 8
+/*
+void checkLabel(char * str, char * optionalLabel, char * command){
+	int labelSize; 
+	char*  location = NULL; 
+
+	location = strchr(str, ':'); 
+	if (location != NULL){
+
+		labelSize = ((int)(location - (long)str+1)); 
+		memcpy(optionalLabel, str, labelSize);
+		optionalLabel[labelSize] = '\0'; 
+		strcpy(command, location - (int)str+1);
+
+	} else {
+		optionalLabel = NULL;  
+		strcpy(command, location - str+1);
+	}
+}
+
+*/
+
+/*
+void parseCommand(char * line){
+	int numOfItems = 0; 
+	char label [MAX_LABEL_SIZE];
+	char command[200]; 
+
+	checkLabel(line, label, MAX_LABEL_SIZE, command, 200);
+
+
+	numOfItems = sscanf(command, "%[^:]:%s%[^*]", label, command);
+	if (numOfItems == 1){
+		printf("The command is : %s and it has no label", label);
+	} else if (numOfItems == 2) {
+		printf("The command is : %s and it has the label : %s", command, label); 
+	} else {
+		printf("%s", "I cannot parse the commands");
+	}
+}
+
+*/
+
 int main (int argc, char *argv[]) {
 	int i; 
+	FILE *fp; 
 
+	char label[200] ; 
+	char command [200]; 
+	char args[200]; 
+	 
+	/*parseCommand("hello:world"); 
+	parseCommand("hello : world"); 
+	parseCommand("hello:world"); 
+	parseCommand("hello:world what the fuck is this");
+	parseCommand("world"); 
+	parseCommand("no fucking label, hahaha");  */
 	for (i=1; i < argc; i++)
 	{
 		if (endsWith(argv[i], FILE_SUFFIX) != 0)
 		{
 			printf("Invalid asm file : %s \n", argv[i]);
 			continue; 
-		} 
+		}
+
+		fp = fopen(argv[i], "r");
+
+		if (fp == NULL){
+			perror("Error");
+			continue; 
+		}
+		/*
+		bla = sscanf("hello:world arg, asdf", "%[^:]:%s%[^*]", label, command, args); 
+		printf("label : %s\ncommand: %s\nargs: %s\n", label, command, args); 
+		printf("num : %d\n", bla); 
+		printf("lablelll : %d\n", checkLabel(a));
+		printf("%s\n" , a + checkLabel(a));*/
+
+		fclose(fp);
+
 		printf("processing : %s ...\n", argv[i]); 
 	}
 
 	return 0;
 }
+
+
+
+
 
