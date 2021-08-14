@@ -4,29 +4,30 @@
 #define MAX_LABEL_SIZE 32 
 #define MAX_COMMAND_NAME_SIZE 10
 #define COMMENT_PREFIX ';'
-#define LABEL_SUFFIX = ':'
+#define LABEL_SUFFIX ':'
 #define ARGUMENT_DELMITER
 
-enum commandType {EmptyCommand, Data, Instruction, Comment}
+/*Move this enum to the commands table and write */
+enum commandType {EmptyCommand, Data, Instruction, Comment, Directive};
 
 struct Command {
-	enum commandType; 
+	enum commandType type;
 	char label[MAX_LABEL_SIZE];
 	char commandName [MAX_COMMAND_NAME_SIZE]; 
-	char * arguments; 
-	int numOfArgs; 
-}
+	char * arguments;  
+	char hasLabel; 
+};
 
-typedef struct Command* commandp; 
+typedef struct Command* command_p; 
 
 
 /*Creates a new command struct, returns NULL if allocation failed.*/
-commandp newCommand();
+command_p newCommand();
 
 /*Parses the command line into a command struct.
   Returnes 0 if succeeded and error code otherwise.*/
-int parseCommand(char * commandLine, command commandp); 
+int parseCommand(char * commandLine, command_p command); 
 
-void freeCommand(command commandp);
+void freeCommand(command_p command);
 
 #endif

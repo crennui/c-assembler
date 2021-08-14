@@ -24,8 +24,9 @@ struct TuMem {
 	int DC; 
 
 };
-typedef struct TuMem* tuMemp; 
+typedef struct TuMem* tuMem_p; 
 
+tuMem_p newTuMem(); 
 
 int appendInstruction(); 
 int appendData(); 
