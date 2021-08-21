@@ -5,7 +5,7 @@
 struct Entry {
     char * key; 
     void * value; 
-    Entry_p next; 
+    struct Entry * next; 
 }; 
 typedef struct Entry* Entry_p; 
 
@@ -20,7 +20,7 @@ typedef struct HashTable* HashTable_p;
 HashTable_p newHashTable(); 
 
 /*Freeing all memory related to the hash table*/
-freeHashTable (HashTable_p hashTable_p);
+void freeHashTable (HashTable_p hashTable_p);
 
 /*Returns the void* value related to that key
   returns NULL if doesn't exist.*/
@@ -36,6 +36,6 @@ int put (HashTable_p table, const char* key, void * value);
 Removes a specific Entry according to it's key.  
 returns 0 if succeded and -1 if key wasn't found.
 */
-int remove (HashTable_p table, const char * key); 
+int removeEntry(HashTable_p table, const char* key);
 
 #endif

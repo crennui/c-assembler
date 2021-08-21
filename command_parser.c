@@ -2,25 +2,24 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "parsed_instruction.h"
-
-
+#include "command_parser.h"
+#include "common.h"
 
 /*Creates a new command struct, returns NULL if allocation failed.*/
-command_p newCommand(){
-	command_p command; 
-	command = (command_p) malloc(sizeof(struct Command));
+parsedCommand_p newParsedCommand(){
+	parsedCommand_p command; 
+	command = (parsedCommand_p) malloc(sizeof(struct ParsedCommand));
 	if (command == NULL){
 		return NULL; 
 	}
-	command -> type = EmptyCommand; 
+	command -> isEmptyOrCommet = FALSE; 
 	command -> arguments = NULL; 
-	command -> hasLabel = 0; 
+	command -> hasLabel = FALSE; 
 	return command; 
 }
 
 
-int parseCommand(char* commandLine, command_p command ){
+int parseCommand(char* commandLine, parsedCommand_p command ){
 	char *labelSuffixP;
 	int i, extractedValues = 0; 
 	char * arguments; 
@@ -28,11 +27,11 @@ int parseCommand(char* commandLine, command_p command ){
 	for (i=0; i <  lineLength && isspace(commandLine[i]) != 0; i++){}
 
 	if (commandLine[i] == COMMENT_PREFIX){
-		command -> type = Comment;
+		command -> isEmptyOrCommet = TRUE;
 		return 0;
 	}
 	if (i+1 == lineLength && isspace(commandLine[i]) != 0){
-		command -> type = EmptyCommand;
+		command -> isEmptyOrCommet = TRUE;
 		return 0; 
 	}
 
@@ -55,8 +54,7 @@ int parseCommand(char* commandLine, command_p command ){
 		return -1; 
 	}
 	
-	command -> type = getCommandType(command -> commandName); /*TODO: Imlement this function in the commands table*/
-
+	command -> isEmptyOrCommet = FALSE; 
 	command -> arguments = arguments; 
 	return 0; 
 
@@ -64,7 +62,7 @@ int parseCommand(char* commandLine, command_p command ){
 
 
 
-void freeCommand(command_p command){
+void freeCommand(parsedCommand_p command){
 	free(command -> arguments);
 	free(command);
 }

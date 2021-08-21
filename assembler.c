@@ -5,6 +5,7 @@
 #include "general_utils.h"
 #include "asm_processor.h"
 #include "tu_mem.h"
+#include "symbol_table.h"
 
 extern int errno; 
 
@@ -62,9 +63,10 @@ extern int errno;
 	*/
 
 int main (int argc, char *argv[]) {
-	int i; 
+	int i, status = 0; 
 	FILE *fp; 
 	tuMem_p currentFileTuMem; 
+	symbolsTable_p symbols;
 
 	for (i=1; i < argc; i++)
 	{
@@ -81,17 +83,17 @@ int main (int argc, char *argv[]) {
 			continue; 
 		}
 
-		currentFileTuMem = newTuMem();
-		if (currentFileTuMem == NULL){
-			printf("Couldn't allocate new memory"); 
-			fclose(fp);
-			continue;  
-		}
+		symbols = newSymbolTable();
+		if (symbols == NULL){ fclose(fp); continue;}
+		currentFileTuMem = newTuMem(); 
+		if (currentFileTuMem == NULL){ fclose(fp); freeSymbolTable(symbols);  continue;}
 
 		printf("processing : %s ...\n", argv[i]); 
-		if(processFile(fp, currentFileTuMem) == 0){
+		if(processFile(fp, currentFileTuMem, symbols) == 0){
 			printf("%s %s\n", "writing files for : ", argv[i]); 
 			/*After processing the file, calling the file creation functions with currentFileTuMem if return status is ok*/
+		} else {
+			printf("%s\n","handaling errors ... "); 
 		}
 		/*After processing the file, calling the file creation functions with currentFileTuMem if return status is ok*/
 		fclose(fp);

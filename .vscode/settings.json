@@ -2,6 +2,7 @@
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
         "command.h": "c",
-        "parsed_instruction.h": "c"
+        "command_parser.h": "c",
+        "hash_table.h": "c"
     }
 }

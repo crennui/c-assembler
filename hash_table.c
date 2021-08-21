@@ -6,14 +6,15 @@
 
 unsigned int hash (const char* key) {
     unsigned long int hash = 0; 
-    size_t i; 
+    size_t i = 0; 
 
-    while (key[i] != NULL){
+    while (key[i] != '\0'){
         /*
         I looked at one of the java decompiled hash functions on string 
         and used the same logic. 31 was chosen because he's an odd prime number.  
         */
         hash = hash * 31 + key[i]; 
+        i++;
     }
     return hash; 
 }
@@ -60,7 +61,7 @@ int put (HashTable_p table, const char* key, void * value){
     unsigned int index;
 
     if (currentValue != NULL){
-        remove(table, key); 
+        removeEntry(table, key); 
     }
     
     index = getBucketIndex(key); 
@@ -71,6 +72,7 @@ int put (HashTable_p table, const char* key, void * value){
         while (last -> next != NULL){ last = last -> next; }
         last -> next = newEntry(key, value, NULL);
     }
+    return 0; 
 }
 
 
@@ -86,7 +88,7 @@ void* get(HashTable_p table, const char* key){
     return value;   
 }
 
-int remove(HashTable_p table, const char* key){
+int removeEntry(HashTable_p table, const char* key){
 unsigned int index = getBucketIndex(key);
     Entry_p value = table -> buckets[index];
     Entry_p tmpValue; 
@@ -101,7 +103,7 @@ unsigned int index = getBucketIndex(key);
     }
 
     while(value -> next != NULL){
-        if (strcmp(value -> next -> key, key) == 0){
+        if (strcmp(value -> next -> key , key) == 0){
             tmpValue = value -> next; 
             value -> next = value->next->next; 
             tmpValue->next = NULL;

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Aug 14 14:07:46 2021
+# Make data base, printed on Sat Aug 21 15:17:51 2021
 
 # Variables
 
@@ -47,11 +47,11 @@ CURDIR := /home/crennui/Documents/open_uni/c_systems/maman14
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/71
+SNAP_DATA = /var/snap/code/72
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:48889
+JOURNAL_STREAM = 8:50318
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -75,15 +75,15 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-_ = /snap/code/71/usr/share/code/code
+_ = /snap/code/72/usr/share/code/code
 # environment
-MANAGERPID = 2417
+MANAGERPID = 1943
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 VSCODE_CWD = /home/crennui
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/71/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/72/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -91,15 +91,15 @@ PATH = /home/crennui/.local/bin:/home/crennui/anaconda3/bin:/home/crennui/anacon
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/crennui:@/tmp/.ICE-unix/2634,unix/crennui:/tmp/.ICE-unix/2634
+SESSION_MANAGER = local/crennui:@/tmp/.ICE-unix/2159,unix/crennui:/tmp/.ICE-unix/2159
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/crennui/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/71
+SNAP = /snap/code/72
 # environment
-SNAP_VERSION = 379476f0
+SNAP_VERSION = 3866c355
 # environment
 CONDA_PREFIX = /home/crennui/anaconda3
 # environment
@@ -111,9 +111,9 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=99caf22f-4c70-4870-bb9a-997053e7d2a5&iid=99caf22f-4c70-4870-bb9a-997053e7d2a5&sid=99caf22f-4c70-4870-bb9a-997053e7d2a5","uploadToServer":true}
 # environment
-INVOCATION_ID = d44b2cdc335c4fe896a2e07f1b83d188
+INVOCATION_ID = 837b1a4c0d3f4c3c9c4d3052f882b33f
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/71/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/72/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -123,7 +123,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5466
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7771
 # automatic
 %F = $(notdir $%)
 # environment
@@ -139,7 +139,7 @@ PWD = /home/crennui/Documents/open_uni/c_systems/maman14
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2597
+SSH_AGENT_PID = 2122
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -153,7 +153,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/crennui/.config/Code/CachedData/379476f0e13988d90fab105c5c19e7abc8b1dea8
+VSCODE_CODE_CACHE_PATH = /home/crennui/.config/Code/CachedData/3866c3553be8b268c8a7f8c0482c0c0177aa8bfa
 # environment
 LOGNAME = crennui
 # environment
@@ -187,19 +187,21 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/crennui/snap/code/71
+SNAP_USER_DATA = /home/crennui/snap/code/72
 # environment
 SHLVL = 0
+# makefile (from 'makefile', line 1)
+CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-72718d6e-89b2-4962-bf7c-c027cfc74514.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9c3f98df-b129-4fc3-8c69-6815c305719f.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = crennui
 # environment
-SNAP_REVISION = 71
+SNAP_REVISION = 72
 # makefile
 .DEFAULT_GOAL := assembler
 # environment
@@ -217,7 +219,7 @@ MAKE_COMMAND := make
 # environment
 LANGUAGE = en_IL:en
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-b6fa637c-1.59.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-b6fa637c-1.59.1-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -276,13 +278,13 @@ GJS_DEBUG_OUTPUT = stderr
 .RECIPEPREFIX := 
 # environment
 LANG = C
+ 
 # environment
-VSCODE_PID = 5509
+VSCODE_PID = 7813
 # environment
 _CE_CONDA = 
 # variable set hash-table stats:
- 
-# Load=134/1024=13%, Rehash=0, Collisions=20/159=13%
+# Load=135/1024=13%, Rehash=0, Collisions=20/160=12%
 
 # Pattern-specific Variable Values
 
@@ -290,9 +292,9 @@ _CE_CONDA =
 
 # Directories
 
-# . (device 2050, inode 18221528): 24 files, no impossibilities.
+# . (device 2050, inode 18221528): 27 files, no impossibilities.
 
-# 24 files, no impossibilities in 1 directories.
+# 27 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -322,7 +324,7 @@ all:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-08-09 23:32:36.420821963
+#  Last modified 2021-08-20 14:40:42.741037638
 #  File has been updated.
 #  Successfully updated.
 
@@ -336,8 +338,8 @@ assembler: assembler.o general_utils.o command.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 2):
-	gcc -Wall -pedantic -ansi -m32 -g --std=c90 assembler.c general_utils.h general_utils.c command.c command.h asm_processor.c asm_processor.h -o assembler
+#  recipe to execute (from 'makefile', line 3):
+	$(CC) -Wall -pedantic -ansi -m32 -g --std=c90 *.c *.h -o assembler
 
 # Not a target:
 .DEFAULT:
@@ -345,20 +347,27 @@ assembler: assembler.o general_utils.o command.o
 #  Modification time never checked.
 #  File has not been updated.
 
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 7):
+	rm *.o assembler 
+
 # files hash-table stats:
-# Load=8/1024=1%, Rehash=0, Collisions=0/21=0%
+# Load=9/1024=1%, Rehash=0, Collisions=0/22=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 322 B / avg = 11 B
-# current buf: size = 8162 B / used = 322 B / count = 29 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 34 / storage = 394 B / avg = 11 B
+# current buf: size = 8162 B / used = 394 B / count = 34 / avg = 11 B
 
-# strcache performance: lookups = 38 / hit rate = 23%
+# strcache performance: lookups = 43 / hit rate = 20%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=1/38=3%
-# Finished Make data base on Sat Aug 14 14:07:46 2021
+# Load=34/8192=0%, Rehash=0, Collisions=1/43=2%
+# Finished Make data base on Sat Aug 21 15:17:51 2021
 
  

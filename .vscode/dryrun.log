@@ -1,8 +1,8 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/crennui/Documents/open_uni/c_systems/maman14'
-cc    -c -o assembler.o assembler.c
-cc    -c -o general_utils.o general_utils.c
-cc    -c -o command.o command.c
-gcc -Wall -pedantic -ansi -m32 -g --std=c90 assembler.c general_utils.h general_utils.c command.c command.h asm_processor.c asm_processor.h -o assembler
+gcc    -c -o assembler.o assembler.c
+gcc    -c -o general_utils.o general_utils.c
 make: Leaving directory '/home/crennui/Documents/open_uni/c_systems/maman14'
+ 
+make: *** No rule to make target 'command.o', needed by 'assembler'.
  
