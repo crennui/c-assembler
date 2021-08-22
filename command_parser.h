@@ -1,17 +1,8 @@
 #ifndef COMMAND_PARSER
 #define COMMAND_PARSER
 #include "commands_table.h"
+#include "commands.h"
 #include "common.h"
-
-struct ParsedCommand {
-	char label[MAX_LABEL_SIZE];
-	char commandName [MAX_COMMAND_NAME_SIZE]; 
-	char * arguments;  
-	char hasLabel;
-	char isEmptyOrCommet;  
-};
-
-typedef struct ParsedCommand* parsedCommand_p; 
 
 
 /*Creates a new command struct, returns NULL if allocation failed.*/

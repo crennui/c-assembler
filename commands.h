@@ -1,9 +1,21 @@
 #ifndef COMMANDS
 #define COMMANDS
 
+#include "common.h"
+
 #define R_COMMAND_TYPE 1
 #define I_COMMAND_TYPE 2
 #define J_COMMAND_TYPE 3
+
+struct ParsedCommand {
+	char label[MAX_LABEL_SIZE];
+	char commandName [MAX_COMMAND_NAME_SIZE]; 
+	char arguments [MAX_LINE_SIZE];  
+	char hasLabel;
+	char isEmptyOrCommet;  
+};
+
+typedef struct ParsedCommand* parsedCommand_p; 
 
 
 typedef struct CommandR{

@@ -1,7 +1,7 @@
 #ifndef TU_MEM
 #define TU_MEM
 #include "commands.h"
-#define INSTRUCTION_SIZE 4 
+#include "data.h"
 /*
 This struct is representing all the nessecary output for a single .as file 
 I call it "translation unit"
@@ -18,25 +18,20 @@ It holds the :
 The processing functions will use this struct to save their output and at the end 
 this struct is used to output all the nessecary files for a specific .as file.    
 */
-#define MEMORY_SIZE 33554432
 struct TuMem {
 	int IC; 
 	int DC; 
 	command_p firstCommend; 
-	
-	/*here I want an array of commands or linked list
-	plus you want to */
+	dataBlock_p firstDataBlock; 
+	command_p lastCommend; 
+	dataBlock_p lastDataBlock; 
 };
+
 typedef struct TuMem* tuMem_p; 
 
 tuMem_p newTuMem(); 
 
-int appendInstruction(); 
-int appendData(); 
-int appendLabel(); 
-
-int updateInstruction(); 
-int updateData(); 
-int updateLable(); 
+int appendInstruction(tuMem_p tm, command_p instruction); 
+int appendData(tuMem_p tm, dataBlock_p dataBlock); 
 
 #endif

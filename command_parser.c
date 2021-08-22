@@ -13,7 +13,6 @@ parsedCommand_p newParsedCommand(){
 		return NULL; 
 	}
 	command -> isEmptyOrCommet = FALSE; 
-	command -> arguments = NULL; 
 	command -> hasLabel = FALSE; 
 	return command; 
 }
@@ -22,7 +21,6 @@ parsedCommand_p newParsedCommand(){
 int parseCommand(char* commandLine, parsedCommand_p command ){
 	char *labelSuffixP;
 	int i, extractedValues = 0; 
-	char * arguments; 
 	size_t lineLength = strlen(commandLine);
 	for (i=0; i <  lineLength && isspace(commandLine[i]) != 0; i++){}
 
@@ -35,18 +33,13 @@ int parseCommand(char* commandLine, parsedCommand_p command ){
 		return 0; 
 	}
 
-
-	arguments = (char*)malloc(sizeof(char) * lineLength);
-	if (arguments == NULL) {return -1;}
-
-
 	labelSuffixP = strchr(commandLine, LABEL_SUFFIX);
 	if (labelSuffixP == NULL){
-		 extractedValues = sscanf(commandLine + i, "%s%[^*]", command -> commandName, arguments); 
+		 extractedValues = sscanf(commandLine + i, "%s%[^*]", command -> commandName, command -> arguments); 
 
 	} else {
 
-		 extractedValues = sscanf(commandLine + i, "%[^:]:%s%[^*]", command -> label, command -> commandName , arguments); 
+		 extractedValues = sscanf(commandLine + i, "%[^:]:%s%[^*]", command -> label, command -> commandName , command -> arguments); 
 		 command -> hasLabel = 1; 
 	}
 
@@ -55,7 +48,6 @@ int parseCommand(char* commandLine, parsedCommand_p command ){
 	}
 	
 	command -> isEmptyOrCommet = FALSE; 
-	command -> arguments = arguments; 
 	return 0; 
 
 }
@@ -63,7 +55,6 @@ int parseCommand(char* commandLine, parsedCommand_p command ){
 
 
 void freeCommand(parsedCommand_p command){
-	free(command -> arguments);
 	free(command);
 }
 	/*

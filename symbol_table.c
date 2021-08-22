@@ -4,9 +4,11 @@
 #include "hash_table.h"
 #include "common.h"
 #include "errors.h"
+#include <ctype.h>
 
+extern int errorCode;
 /*Allcates memory for a new Symbol*/
-symbol_p newSymbol(const char* name, size_t location, int attributes){
+symbol_p newSymbol(const char* name, size_t location, int attributes){ 
     symbol_p symbol; 
     size_t i = 0;
     /*validating label name*/
@@ -34,7 +36,7 @@ symbolsTable_p newSymbolTable(){
     symbolsTable = malloc(sizeof(struct SymbolsTable));
 
     if (symbolsTable != NULL){
-        symbolsTable ->_private_size = table;
+        symbolsTable ->_private_table = table;
         symbolsTable ->_private_size = 0;  
     }
     return symbolsTable; 
@@ -63,5 +65,10 @@ symbol_p getSymbol(symbolsTable_p symbolsTable, char* name){
 /*removes symbol entry from table accodring to its name*/
 int removeSymbol(symbolsTable_p symbolsTable, char* name){
     return removeEntry(symbolsTable -> _private_table, name);
+}
+
+int makeEntry(symbolsTable_p table, const char* name){
+    /*TODO : implement */
+    return 0; 
 }
 /*---------------------------------------*/

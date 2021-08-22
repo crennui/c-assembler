@@ -79,7 +79,7 @@ int put (HashTable_p table, const char* key, void * value){
 void* get(HashTable_p table, const char* key){
     unsigned int index = getBucketIndex(key);
     Entry_p value = table -> buckets[index];
-    while(value != NULL || value -> next != NULL){
+    while(value != NULL && value -> next != NULL){
         if (strcmp(value -> key, key) == 0){
             return value; 
         }
@@ -113,4 +113,17 @@ unsigned int index = getBucketIndex(key);
         value = value -> next; 
     }
     return -1;    
+}
+
+void freeEntries(Entry_p entry){
+    if (entry != NULL && entry -> next != NULL){
+        freeEntries(entry -> next);
+    } 
+    freeEntry(entry); 
+}
+void freeHashTable(HashTable_p table){
+    size_t i = 0;
+    for (i=0; i< BUCKETS_IN_TABLE; i++){
+        freeEntries(table -> buckets[i]);
+    }
 }

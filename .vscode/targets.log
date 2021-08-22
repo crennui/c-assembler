@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Aug 21 15:17:51 2021
+# Make data base, printed on Sun Aug 22 12:32:07 2021
 
 # Variables
 
@@ -24,6 +24,8 @@ DESKTOP_SESSION = ubuntu
 .SHELLFLAGS := -c
 # environment
 XDG_SESSION_CLASS = user
+# makefile (from 'makefile', line 2)
+SRC = $(wildcard *.c)
 # environment
 SNAP_COMMON = /var/snap/code/common
 # environment
@@ -51,7 +53,7 @@ SNAP_DATA = /var/snap/code/72
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:50318
+JOURNAL_STREAM = 8:54389
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -77,7 +79,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/72/usr/share/code/code
 # environment
-MANAGERPID = 1943
+MANAGERPID = 2664
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -91,7 +93,7 @@ PATH = /home/crennui/.local/bin:/home/crennui/anaconda3/bin:/home/crennui/anacon
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/crennui:@/tmp/.ICE-unix/2159,unix/crennui:/tmp/.ICE-unix/2159
+SESSION_MANAGER = local/crennui:@/tmp/.ICE-unix/2881,unix/crennui:/tmp/.ICE-unix/2881
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -111,7 +113,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=99caf22f-4c70-4870-bb9a-997053e7d2a5&iid=99caf22f-4c70-4870-bb9a-997053e7d2a5&sid=99caf22f-4c70-4870-bb9a-997053e7d2a5","uploadToServer":true}
 # environment
-INVOCATION_ID = 837b1a4c0d3f4c3c9c4d3052f882b33f
+INVOCATION_ID = 672353aa28ff4ae78efc9811e865fb37
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/72/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -123,7 +125,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 7771
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6159
 # automatic
 %F = $(notdir $%)
 # environment
@@ -139,7 +141,7 @@ PWD = /home/crennui/Documents/open_uni/c_systems/maman14
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2122
+SSH_AGENT_PID = 2844
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -195,7 +197,7 @@ CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9c3f98df-b129-4fc3-8c69-6815c305719f.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-75fea772-463d-4f9a-8732-e967b761d5f9.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -278,13 +280,13 @@ GJS_DEBUG_OUTPUT = stderr
 .RECIPEPREFIX := 
 # environment
 LANG = C
- 
 # environment
-VSCODE_PID = 7813
+VSCODE_PID = 6205
 # environment
 _CE_CONDA = 
 # variable set hash-table stats:
-# Load=135/1024=13%, Rehash=0, Collisions=20/160=12%
+ 
+# Load=136/1024=13%, Rehash=0, Collisions=20/162=12%
 
 # Pattern-specific Variable Values
 
@@ -292,27 +294,15 @@ _CE_CONDA =
 
 # Directories
 
-# . (device 2050, inode 18221528): 27 files, no impossibilities.
+# . (device 2050, inode 18221528): 29 files, no impossibilities.
 
-# 27 files, no impossibilities in 1 directories.
+# 29 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
 # Files
-
-# Not a target:
-general_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-command.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 all:
@@ -322,23 +312,41 @@ all:
 #  File has not been updated.
 
 # Not a target:
+commands.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-08-20 14:40:42.741037638
+#  Last modified 2021-08-21 21:59:44.585047223
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-assembler.o:
+general_utils.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-assembler: assembler.o general_utils.o command.o
+# Not a target:
+data.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 3):
+
+# Not a target:
+tu_mem.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+assembler: general_utils.c tu_mem.c symbol_table.c command_parser.c asm_processor.c commands.c assembler.c data.c commands_table.c hash_table.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 4):
 	$(CC) -Wall -pedantic -ansi -m32 -g --std=c90 *.c *.h -o assembler
 
 # Not a target:
@@ -347,27 +355,63 @@ assembler: assembler.o general_utils.o command.o
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+hash_table.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+commands_table.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 7):
+#  recipe to execute (from 'makefile', line 8):
 	rm *.o assembler 
 
+# Not a target:
+asm_processor.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+symbol_table.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+assembler.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+command_parser.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/22=0%
+# Load=16/1024=2%, Rehash=0, Collisions=0/36=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 34 / storage = 394 B / avg = 11 B
-# current buf: size = 8162 B / used = 394 B / count = 34 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 392 B / avg = 11 B
+# current buf: size = 8162 B / used = 392 B / count = 35 / avg = 11 B
 
-# strcache performance: lookups = 43 / hit rate = 20%
+# strcache performance: lookups = 52 / hit rate = 32%
 # hash-table stats:
-# Load=34/8192=0%, Rehash=0, Collisions=1/43=2%
-# Finished Make data base on Sat Aug 21 15:17:51 2021
+# Load=35/8192=0%, Rehash=0, Collisions=1/52=2%
+# Finished Make data base on Sun Aug 22 12:32:07 2021
 
  
