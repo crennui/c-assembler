@@ -32,6 +32,6 @@ typedef struct TuMem* tuMem_p;
 tuMem_p newTuMem(); 
 
 int appendInstruction(tuMem_p tm, command_p instruction); 
-int appendData(tuMem_p tm, dataBlock_p dataBlock); 
+int appendData(tuMem_p tm, dataBlock_p dataBlock);  
 
 #endif

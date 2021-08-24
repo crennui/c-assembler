@@ -10,6 +10,7 @@
 #include "data.h"
 #include "commands.h"
 
+#define NUM_CHARS_PER_BYTE 3
 
 char* generateNewFileName(char* fileName, char* newSuffix){
     int fileNameLength = strlen(fileName); 
@@ -25,22 +26,19 @@ char* generateNewFileName(char* fileName, char* newSuffix){
   plus it will look at the symbols table, if entries exists it will write a file called 
   <fileName>.ent . if extern symbols exist it will write a file called <fileName>.ext
   with all the external symbols. returns -1 if fails and 0 if succeded.*/
-int exportToFiles(char* fileName, tuMem_p translationUnit, symbol_p symbolsTable){
+int exportToFiles(char* fileName, tuMem_p translationUnit, symbolsTable_p symbolsTable){
     char* newFileOBName = generateNewFileName(fileName, OB_FILE_SUFFIX);
-    char* currentCommandMem; 
-    unsigned char instructionStrBuffer[SIZE_OF_INSTRUCTION + 2];
+    unsigned char* currentCommandMem; 
+    char instructionStrBuffer[SIZE_OF_INSTRUCTION * NUM_CHARS_PER_BYTE + 2];
     char memoryStrBuffer[8];
-    size_t memory = 0; 
+    size_t memory = 100; 
     int i;
     unsigned int command32BitsInt = 0;
     unsigned int tmp = 0; 
     FILE *fptr;
-    unsigned char* val; 
     command_p currentCommand; 
     generalCommand currentGeneralCommand; 
     dataBlock_p currentDataBlock;
-    instructionStrBuffer[SIZE_OF_INSTRUCTION] = '\n';
-    instructionStrBuffer[SIZE_OF_INSTRUCTION+1] = '\0';
     if (newFileOBName == NULL){ return -1; }
     fptr = fopen(newFileOBName, "w");
     if (fptr == NULL){ free(newFileOBName); return -1; }
@@ -95,11 +93,15 @@ int exportToFiles(char* fileName, tuMem_p translationUnit, symbol_p symbolsTable
         }
 
         for (i = 0; i<SIZE_OF_INSTRUCTION ; i++){
-            instructionStrBuffer[i] = sprintf("%02X", currentCommandMem[i]);
+            sprintf(&(instructionStrBuffer[i*NUM_CHARS_PER_BYTE]), "%02X ", currentCommandMem[i]);
         }
-        fputs (sprintf(memoryStrBuffer, "%04d ",memory), fptr); 
+        instructionStrBuffer[i*NUM_CHARS_PER_BYTE] = '\n';
+        instructionStrBuffer[i*NUM_CHARS_PER_BYTE+1] = '\0'; 
+        sprintf(memoryStrBuffer, "%04d ",memory);
+        fputs (memoryStrBuffer, fptr); 
         fputs(instructionStrBuffer, fptr); 
         command32BitsInt = 0; tmp = 0; 
+        memory += SIZE_OF_INSTRUCTION; 
         currentCommand = currentCommand -> next;
     }
     

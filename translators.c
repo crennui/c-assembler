@@ -54,9 +54,10 @@ command_p copyTranslator(parsedCommand_p parsedCommand, int funct, int opcode, s
     }
 
     newCmd -> commandType = R_COMMAND_TYPE;
-    newCmd -> command.cmd_r.rd = reg1;
-    newCmd -> command.cmd_r.rs = reg2;
-    newCmd -> command.cmd_r.rt = 0; 
+    newCmd -> command.cmd_r.rd = reg2;
+    newCmd -> command.cmd_r.rs = reg1;
+    newCmd -> command.cmd_r.rt = 0;
+    newCmd -> command.cmd_r.unused = 0; 
     newCmd->command.cmd_r.opcode = opcode; 
     newCmd -> command.cmd_r.funct = funct;
     return newCmd; 

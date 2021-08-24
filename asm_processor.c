@@ -80,8 +80,9 @@ int firstIteration(FILE* fp, tuMem_p tm, symbolsTable_p symbols){
         freeParsedCommand(command);
     }
     printf("%d\n", isValidRun);
-    /*TODO increase the data symbols by ic*/
-    return isValidRun; 
+    increaseDataCounter(symbols, ic);
+    if (isValidRun != TRUE) {return -1;}
+    return 0; 
 }
 
 

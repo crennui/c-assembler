@@ -48,6 +48,8 @@ int removeSymbol(symbolsTable_p table, char* name);
 
 int makeEntry(symbolsTable_p table, char* name); 
 
+/*Increases all location field of symbols in table that has the DATA attribute by ic*/
+void increaseDataCounter(symbolsTable_p symbolsTable, size_t ic);
 /*---------------------------------------*/
 
 

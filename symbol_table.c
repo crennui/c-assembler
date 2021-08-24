@@ -22,8 +22,8 @@ symbol_p newSymbol(const char* name, size_t location, int attributes){
     symbol = malloc(sizeof(struct Symbol));
     if (symbol != NULL){ 
         strcpy(symbol->name, name);
-        location = location; 
-        attributes = attributes; 
+        symbol -> location = location; 
+        symbol -> attributes = attributes; 
     } else { errorCode = MEMORY_ALLOCATION_ERROR_CODE; }
     return symbol;  
 }
@@ -74,4 +74,22 @@ int makeEntry(symbolsTable_p table, char* name){
     return 0; 
 }
 
+
+void increaseDataCounter(symbolsTable_p symbolsTable, size_t ic){
+
+   Entry_p *buckets = symbolsTable ->_private_table->buckets;
+   size_t i;
+   symbol_p currSymbol;
+   Entry_p currEntry; 
+   for (i=0; i<BUCKETS_IN_TABLE; i++){
+       currEntry = buckets[i]; 
+       while(currEntry != NULL){
+           currSymbol = currEntry->value;
+           if(((currSymbol->attributes) & DATA_MASK) > 0){
+               currSymbol->location += ic;
+           }
+          currEntry = currEntry->next; 
+       }
+   }
+}
 /*---------------------------------------*/
