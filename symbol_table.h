@@ -11,10 +11,19 @@
 #define DATA_MASK 8 
 
 /*---------------------------------------*/
+struct SymbolInstance{
+    size_t address;
+    struct SymbolInstance *next; 
+}; 
+typedef struct SymbolInstance* symbolInstance_p;
+void freeInstances(symbolInstance_p instance);
+int addSymbolInstance(symbol_p symbol, size_t address);
+
 struct Symbol {
     char name[MAX_LABEL_SIZE];
     size_t location; 
-    int attributes;  
+    int attributes; 
+    symbolInstance_p instances; 
 }; 
 
 typedef struct Symbol* symbol_p;
@@ -38,7 +47,7 @@ symbolsTable_p newSymbolTable();
 void freeSymbolTable(symbolsTable_p table);
 
 /*Adds new symbol to table if symbol name is valid*/
-int addSymbol(symbolsTable_p symbolTable, symbol_p symbol, char shouldOverride);
+int addSymbol(symbolsTable_p symbolTable, symbol_p symbol, char allowDuplications);
 
 /*returns a symbol pointer according to it's name*/
 symbol_p getSymbol(symbolsTable_p table, char* name);

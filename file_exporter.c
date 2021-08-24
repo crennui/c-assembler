@@ -11,6 +11,8 @@
 #include "commands.h"
 
 #define NUM_CHARS_PER_BYTE 3
+#define EXTERN_FILE_SUFFIX ".ext"
+#define ENTRY_FILE_SUFFIX ".ent"
 
 char* generateNewFileName(char* fileName, char* newSuffix){
     int fileNameLength = strlen(fileName); 
@@ -31,18 +33,22 @@ int exportToFiles(char* fileName, tuMem_p translationUnit, symbolsTable_p symbol
     unsigned char* currentCommandMem; 
     char instructionStrBuffer[SIZE_OF_INSTRUCTION * NUM_CHARS_PER_BYTE + 2];
     char memoryStrBuffer[8];
-    size_t memory = 100; 
-    int i;
+    char hexByteBuffer[4];
+    size_t memory = CODE_SEGMENT_START; 
+    size_t i, k;
+    unsigned char* dataValue;
     unsigned int command32BitsInt = 0;
     unsigned int tmp = 0; 
     FILE *fptr;
+    char header[20]; 
     command_p currentCommand; 
     generalCommand currentGeneralCommand; 
     dataBlock_p currentDataBlock;
     if (newFileOBName == NULL){ return -1; }
     fptr = fopen(newFileOBName, "w");
     if (fptr == NULL){ free(newFileOBName); return -1; }
-    
+    sprintf(header, "     %u %u      \n", translationUnit->IC-CODE_SEGMENT_START, translationUnit->DC);
+    fputs(header, fptr);    
     currentCommand = translationUnit -> firstCommend;
 
     while(currentCommand != NULL){
@@ -105,6 +111,96 @@ int exportToFiles(char* fileName, tuMem_p translationUnit, symbolsTable_p symbol
         currentCommand = currentCommand -> next;
     }
     
+    currentDataBlock = translationUnit ->firstDataBlock;
+    i = 0;
+    k = 0;
+    while (currentDataBlock != NULL){
+        dataValue = currentDataBlock ->value;
+
+        for(k = 0; k<currentDataBlock->size; k++, i++){
+            if (i%SIZE_OF_INSTRUCTION == 0){ 
+                if (i!=0){
+                fputc('\n', fptr);
+                memory+=SIZE_OF_INSTRUCTION;
+                }
+                sprintf(memoryStrBuffer, "%04d ",memory);
+                fputs (memoryStrBuffer, fptr);
+            }
+            sprintf(hexByteBuffer, "%02X ", dataValue[k]);
+            fputs(hexByteBuffer, fptr);
+        }
+        currentDataBlock = currentDataBlock->next;
+    }
     fclose(fptr); 
+
+    exportEntryFile(fileName, symbolsTable);
+    exportExternFile(fileName, symbolsTable);
     return 0;
+}
+
+
+char exportExternFile(char* fileName, symbolsTable_p symbols){
+    size_t i;
+    char* newExternFileName = generateNewFileName(fileName, EXTERN_FILE_SUFFIX);
+    char externLineBuffer[60];
+    char hadExternFlag = FALSE;
+    Entry_p *buckets = symbols->_private_table->buckets;
+    Entry_p currEntry; 
+    symbol_p currSymbol;
+    FILE *fptr;
+    /*TODO make it less nested*/
+    for(i=0;i<BUCKETS_IN_TABLE; i++){
+        currEntry = buckets[i];
+        while(currEntry != NULL){
+            currSymbol = currEntry->value;
+            if (((currSymbol->attributes)&EXTERNAL_MASK) > 0){
+                if (hadExternFlag == FALSE){
+                    fptr = fopen(newExternFileName, "w");
+                    if(fptr == NULL){ free(newExternFileName); return -1;}
+                    hadExternFlag = TRUE;
+                    }
+
+                sprintf(externLineBuffer,"%s %04u\n" ,currSymbol->name, currSymbol-> location);
+                fputs(externLineBuffer, fptr);
+            }
+            currEntry = currEntry->next; 
+        }
+    }
+    if (fptr != NULL){
+        fclose(fptr);
+    }
+    return hadExternFlag;
+}
+
+char exportEntryFile(char* fileName, symbolsTable_p symbols){
+    size_t i;
+    char* newEntryFileName = generateNewFileName(fileName, ENTRY_FILE_SUFFIX);
+    char entryLineBuffer[60];
+    char hadEntryFlag = FALSE;
+    Entry_p *buckets = symbols->_private_table->buckets;
+    Entry_p currEntry; 
+    symbol_p currSymbol;
+    FILE *fptr;
+    /*TODO make it less nested*/
+    for(i=0;i<BUCKETS_IN_TABLE; i++){
+        currEntry = buckets[i];
+        while(currEntry != NULL){
+            currSymbol = currEntry->value;
+            if (((currSymbol->attributes)&ENTRY_MASK) > 0){
+                if (hadEntryFlag == FALSE){
+                    fptr = fopen(newEntryFileName, "w");
+                    if(fptr == NULL){ free(newEntryFileName); return -1;}
+                    hadEntryFlag = TRUE;
+                    }
+
+                sprintf(entryLineBuffer,"%s %04u\n" ,currSymbol->name, currSymbol->location);
+                fputs(entryLineBuffer, fptr); 
+            }
+            currEntry = currEntry->next; 
+        }
+    }
+    if (fptr != NULL){
+        fclose(fptr);
+    }
+    return hadEntryFlag;
 }

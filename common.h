@@ -4,6 +4,7 @@
 
 typedef int* dummy;
 
+#define CODE_SEGMENT_START 100
 #define FILE_SUFFIX ".as"
 #define TRUE 1
 #define FALSE 0

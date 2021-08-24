@@ -6,6 +6,7 @@
 
 struct DataBlock {
     size_t size;
+    char isStr;
     unsigned char* value; 
     struct DataBlock* next; 
 }; 

@@ -24,8 +24,33 @@ symbol_p newSymbol(const char* name, size_t location, int attributes){
         strcpy(symbol->name, name);
         symbol -> location = location; 
         symbol -> attributes = attributes; 
+        symbol -> instances = NULL;
     } else { errorCode = MEMORY_ALLOCATION_ERROR_CODE; }
     return symbol;  
+}
+
+void freeInstances(symbolInstance_p instance){
+    if (instance == NULL){return;}
+    if (instance->next != NULL){
+        freeInstances(instance->next); 
+    }
+    free(instance);
+}
+
+
+int addSymbolInstance(symbol_p symbol, size_t address){
+    symbolInstance_p newInstance = malloc(sizeof(struct SymbolInstance));
+    symbolInstance_p tmp;
+    if (newInstance == NULL){errorCode = MEMORY_ALLOCATION_ERROR_CODE; return -1;}
+    newInstance -> address = address;
+    if (symbol->instances == NULL){
+        symbol->instances = newInstance;
+        return 0;
+    }
+    tmp = symbol->instances; 
+    while(tmp->next != NULL){ tmp = tmp->next;}
+    tmp->next = newInstance; 
+    return 0;
 }
 
 /*Allocates memory for a new symbolTable*/

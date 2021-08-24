@@ -13,5 +13,7 @@
   with all the external symbols. returns -1 if fails and 0 if succeded.*/
 int exportToFiles(char* fileName, tuMem_p translationUnit, symbolsTable_p symbolsTable);
 char* generateNewFileName(char* fileName, char* newSuffix);
+char exportExternFile(char* fileName, symbolsTable_p symbols);
+char exportEntryFile(char* fileName, symbolsTable_p symbols);
 
 #endif

@@ -22,7 +22,7 @@ int firstIteration(FILE* fp, tuMem_p tm, symbolsTable_p symbols){
     int errorStatus = 0, lineCounter = 0;
     char* externLable; 
     char isValidRun = TRUE; 
-    size_t ic = 100; 
+    size_t ic = CODE_SEGMENT_START; 
     commandType type; 
     dataBlock_p currentDataBlock; 
     parsedCommand_p command;
@@ -76,7 +76,7 @@ int firstIteration(FILE* fp, tuMem_p tm, symbolsTable_p symbols){
                 printf("Unknown command %s on line : %d \n", command -> commandName, lineCounter); 
                 break;   
         }
-        if (errorStatus != 0){printf("error ... "); continue; }
+
         freeParsedCommand(command);
     }
     printf("%d\n", isValidRun);

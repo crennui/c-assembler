@@ -20,6 +20,7 @@ dataBlock_p createDataBlock(unsigned char* value, size_t size, char isStr){
     if (dataBlock == NULL){ errorCode = MEMORY_ALLOCATION_ERROR_CODE; return NULL; }
     dataBlock -> value = val;
     dataBlock -> size = size; 
+    dataBlock -> isStr = isStr;
     dataBlock -> next = NULL; 
     return dataBlock; 
 } 

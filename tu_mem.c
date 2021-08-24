@@ -6,7 +6,7 @@ tuMem_p newTuMem(){
     tuMem_p tm = malloc(sizeof(struct TuMem));
     if (tm != NULL){
         tm -> DC = 0;
-        tm -> IC = 100;
+        tm -> IC = CODE_SEGMENT_START;
         tm -> firstCommend = NULL; 
         tm -> lastCommend = NULL; 
         tm -> firstDataBlock = NULL; 
