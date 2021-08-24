@@ -79,13 +79,13 @@ int put (HashTable_p table, const char* key, void * value){
 void* get(HashTable_p table, const char* key){
     unsigned int index = getBucketIndex(key);
     Entry_p value = table -> buckets[index];
-    while(value != NULL && value -> next != NULL){
+    while(value != NULL){
         if (strcmp(value -> key, key) == 0){
-            return value; 
+            return value->value; 
         }
         value = value -> next; 
     }
-    return value;   
+    return NULL;   
 }
 
 int removeEntry(HashTable_p table, const char* key){

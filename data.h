@@ -6,12 +6,13 @@
 
 struct DataBlock {
     size_t size;
-    char value [MAX_LINE_SIZE]; 
+    unsigned char* value; 
     struct DataBlock* next; 
 }; 
 typedef struct DataBlock* dataBlock_p; 
 
-dataBlock_p createDataBlock(char* value, size_t size); 
+dataBlock_p createDataBlock(unsigned char* value, size_t size, char isStr); 
 void freeDataBlocks(dataBlock_p db_p);
+void freeDataBlock(dataBlock_p db_p);
 
 #endif

@@ -12,6 +12,6 @@ parsedCommand_p newParsedCommand();
   Returnes 0 if succeeded and error code otherwise.*/
 int parseCommand(char * commandLine, parsedCommand_p command); 
 
-void freeCommand(parsedCommand_p command);
+void freeParsedCommand(parsedCommand_p command);
 
 #endif

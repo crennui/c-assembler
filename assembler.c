@@ -8,14 +8,14 @@
 #include "symbol_table.h"
 #include "errors.h"
 #include "commands_table.h"
-#define FILE_SUFFIX ".as"
-
+#include "file_exporter.h"
 
 extern int errno; 
 int errorCode = 0; 
 	
 int main (int argc, char *argv[]) {
 	int i; 
+	int status = 0;
 	FILE *fp; 
 	tuMem_p currentFileTuMem; 
 	symbolsTable_p symbols;
@@ -44,6 +44,8 @@ int main (int argc, char *argv[]) {
 		printf("processing : %s ...\n", argv[i]); 
 		if(processFile(fp, currentFileTuMem, symbols) == 0){
 			printf("%s %s\n", "writing files for : ", argv[i]); 
+			status = exportToFiles(argv[i], currentFileTuMem, symbols);
+			if (status != 0){ printf("Error while exporting output files"); exit(-1);}
 			/*After processing the file, calling the file creation functions with currentFileTuMem if return status is ok*/
 		} else {
 			printf("%s\n","handaling errors ... "); 

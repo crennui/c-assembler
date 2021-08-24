@@ -54,7 +54,7 @@ int parseCommand(char* commandLine, parsedCommand_p command ){
 
 
 
-void freeCommand(parsedCommand_p command){
+void freeParsedCommand(parsedCommand_p command){
 	free(command);
 }
 	/*

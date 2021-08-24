@@ -19,8 +19,8 @@ The processing functions will use this struct to save their output and at the en
 this struct is used to output all the nessecary files for a specific .as file.    
 */
 struct TuMem {
-	int IC; 
-	int DC; 
+	size_t IC; 
+	size_t DC; 
 	command_p firstCommend; 
 	dataBlock_p firstDataBlock; 
 	command_p lastCommend; 

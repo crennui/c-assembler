@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 22 12:32:07 2021
+# Make data base, printed on Mon Aug 23 11:45:37 2021
 
 # Variables
 
@@ -53,7 +53,7 @@ SNAP_DATA = /var/snap/code/72
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:54389
+JOURNAL_STREAM = 8:51799
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -79,7 +79,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/72/usr/share/code/code
 # environment
-MANAGERPID = 2664
+MANAGERPID = 2262
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -93,7 +93,7 @@ PATH = /home/crennui/.local/bin:/home/crennui/anaconda3/bin:/home/crennui/anacon
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/crennui:@/tmp/.ICE-unix/2881,unix/crennui:/tmp/.ICE-unix/2881
+SESSION_MANAGER = local/crennui:@/tmp/.ICE-unix/2479,unix/crennui:/tmp/.ICE-unix/2479
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -113,7 +113,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=99caf22f-4c70-4870-bb9a-997053e7d2a5&iid=99caf22f-4c70-4870-bb9a-997053e7d2a5&sid=99caf22f-4c70-4870-bb9a-997053e7d2a5","uploadToServer":true}
 # environment
-INVOCATION_ID = 672353aa28ff4ae78efc9811e865fb37
+INVOCATION_ID = 0ba673366ce4442c9696f7c79ffe9418
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/72/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -125,7 +125,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6159
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4392
 # automatic
 %F = $(notdir $%)
 # environment
@@ -141,7 +141,7 @@ PWD = /home/crennui/Documents/open_uni/c_systems/maman14
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2844
+SSH_AGENT_PID = 2444
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -197,7 +197,7 @@ CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-75fea772-463d-4f9a-8732-e967b761d5f9.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-19381a74-f53c-4abe-b0a1-af2f98d7946c.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -278,14 +278,14 @@ WINDOWPATH = 2
 GJS_DEBUG_OUTPUT = stderr
 # default
 .RECIPEPREFIX := 
+ 
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6205
+VSCODE_PID = 4435
 # environment
 _CE_CONDA = 
 # variable set hash-table stats:
- 
 # Load=136/1024=13%, Rehash=0, Collisions=20/162=12%
 
 # Pattern-specific Variable Values
@@ -294,15 +294,21 @@ _CE_CONDA =
 
 # Directories
 
-# . (device 2050, inode 18221528): 29 files, no impossibilities.
+# . (device 2050, inode 18221528): 34 files, no impossibilities.
 
-# 29 files, no impossibilities in 1 directories.
+# 34 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
 # Files
+
+# Not a target:
+translators.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 all:
@@ -325,6 +331,12 @@ makefile:
 #  Successfully updated.
 
 # Not a target:
+translation_utils.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 general_utils.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -342,7 +354,7 @@ tu_mem.c:
 #  Modification time never checked.
 #  File has not been updated.
 
-assembler: general_utils.c tu_mem.c symbol_table.c command_parser.c asm_processor.c commands.c assembler.c data.c commands_table.c hash_table.c
+assembler: general_utils.c tu_mem.c translation_utils.c symbol_table.c command_parser.c asm_processor.c commands.c translators.c assembler.c data.c commands_table.c hash_table.c
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -399,19 +411,19 @@ command_parser.c:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=16/1024=2%, Rehash=0, Collisions=0/36=0%
+# Load=18/1024=2%, Rehash=0, Collisions=0/40=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 35 / storage = 392 B / avg = 11 B
-# current buf: size = 8162 B / used = 392 B / count = 35 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 40 / storage = 472 B / avg = 11 B
+# current buf: size = 8162 B / used = 472 B / count = 40 / avg = 11 B
 
-# strcache performance: lookups = 52 / hit rate = 32%
+# strcache performance: lookups = 59 / hit rate = 32%
 # hash-table stats:
-# Load=35/8192=0%, Rehash=0, Collisions=1/52=2%
-# Finished Make data base on Sun Aug 22 12:32:07 2021
+# Load=40/8192=0%, Rehash=0, Collisions=1/59=2%
+# Finished Make data base on Mon Aug 23 11:45:37 2021
 
  

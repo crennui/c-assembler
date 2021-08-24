@@ -67,8 +67,11 @@ int removeSymbol(symbolsTable_p symbolsTable, char* name){
     return removeEntry(symbolsTable -> _private_table, name);
 }
 
-int makeEntry(symbolsTable_p table, const char* name){
-    /*TODO : implement */
+int makeEntry(symbolsTable_p table, char* name){
+    symbol_p  symbol = getSymbol(table, name);  
+    if (symbol == NULL){ errorCode = LABEL_DOES_NOT_EXIST; return -1; }
+    symbol -> attributes = (symbol -> attributes | ENTRY_MASK);
     return 0; 
 }
+
 /*---------------------------------------*/

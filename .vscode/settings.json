@@ -3,6 +3,7 @@
     "files.associations": {
         "command.h": "c",
         "command_parser.h": "c",
-        "hash_table.h": "c"
+        "hash_table.h": "c",
+        "translation_utils.h": "c"
     }
 }

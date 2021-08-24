@@ -7,6 +7,8 @@
 #define I_COMMAND_TYPE 2
 #define J_COMMAND_TYPE 3
 
+typedef enum {Data = 1, Instruction = 2, ExternDirective = 3, EntryDirective = 4} commandType; 
+
 struct ParsedCommand {
 	char label[MAX_LABEL_SIZE];
 	char commandName [MAX_COMMAND_NAME_SIZE]; 
@@ -31,7 +33,7 @@ typedef struct CommandR{
 typedef struct CommandI{
     unsigned int opcode : 6;
     unsigned int rs : 5;  
-    unsigned int rt : 7; 
+    unsigned int rt : 5; 
     unsigned int immed : 16; 
 } Command_i; 
 
@@ -54,7 +56,11 @@ struct Command{
     generalCommand command; 
     struct Command* next; 
 };
-
 typedef struct Command* command_p; 
+
+command_p newCommand(); 
+void freeCommand(command_p cmd);
+
+
 
 #endif

@@ -46,7 +46,8 @@ symbol_p getSymbol(symbolsTable_p table, char* name);
 /*removes symbol entry from table accodring to its name*/
 int removeSymbol(symbolsTable_p table, char* name);
 
-int makeEntry(symbolsTable_p table, const char* name); 
+int makeEntry(symbolsTable_p table, char* name); 
+
 /*---------------------------------------*/
 
 
