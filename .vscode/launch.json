@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/assembler",
-            "args": ["example.as", "example2.as"],
+            "args": ["example2.as", "example.as"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

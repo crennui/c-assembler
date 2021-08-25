@@ -10,7 +10,12 @@
 #define EXTERNAL_MASK 4
 #define DATA_MASK 8 
 
-/*---------------------------------------*/
+
+/*
+The symbols table holds a hash table that maps between the symbol string into
+a symbol struct with the necessary data.
+*/
+
 struct SymbolInstance{
     size_t address;
     struct SymbolInstance* next; 
@@ -27,11 +32,14 @@ struct Symbol {
 
 typedef struct Symbol* symbol_p;
 
+/* Adds a new symbol Instanse into the symbol instances list. (used for external symbol)*/
 int addSymbolInstance(symbol_p symbol, size_t address);
-void freeSymbol(symbol_p symbol);
-/*---------------------------------------*/
 
-/*create new lable funcion*/
+/*Frees a symbol struct and its fields*/
+void freeSymbol(symbol_p symbol);
+
+
+/* Creates new lable funcion*/
 struct SymbolsTable {
     HashTable_p _private_table; 
     size_t _private_size; 
@@ -57,6 +65,7 @@ symbol_p getSymbol(symbolsTable_p table, char* name);
 /*removes symbol entry from table accodring to its name*/
 int removeSymbol(symbolsTable_p table, char* name);
 
+/*Changes the symbol attributes field and turn on the Entry attribute flag*/
 int makeEntry(symbolsTable_p table, char* name); 
 
 /*Increases all location field of symbols in table that has the DATA attribute by ic*/

@@ -69,7 +69,7 @@ int main (int argc, char *argv[]) {
 			status = exportToFiles(argv[i], currentFileTuMem, symbols);
 			if (status != 0){ printf("Error while exporting output files"); exit(-1);}
 		} else {
-			printf("%s\n","handaling errors ... "); 
+			printf("Error while processing the file: %s\n",argv[i]); 
 		}
 		freeSymbolTable(symbols);
 		freeTuMem(currentFileTuMem);

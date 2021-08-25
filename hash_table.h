@@ -2,6 +2,13 @@
 #define HASH_TABLE
 #define BUCKETS_IN_TABLE 100
 
+/*
+This is a hash table implemantation I wanted to make to learn how 
+hash tabels work, I look at decompiled code in java for the hash function
+to make something simmilar. 
+
+The hash table contains an array of entries and each entry is a linked list in case of collision in hash (not a perfect hash). 
+*/
 struct Entry {
     char * key; 
     void * value; 

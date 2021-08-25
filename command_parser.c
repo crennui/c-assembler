@@ -20,7 +20,7 @@ parsedCommand_p newParsedCommand(){
 
 int parseCommand(char* commandLine, parsedCommand_p command ){
 	char *labelSuffixP;
-	int i, extractedValues = 0; 
+	int i=0, extractedValues = 0; 
 	size_t lineLength = strlen(commandLine);
 	for (i=0; i <  lineLength && isspace(commandLine[i]) != 0; i++){}
 
@@ -28,7 +28,7 @@ int parseCommand(char* commandLine, parsedCommand_p command ){
 		command -> isEmptyOrCommet = TRUE;
 		return 0;
 	}
-	if (i+1 == lineLength && isspace(commandLine[i]) != 0){
+	if (i == lineLength){
 		command -> isEmptyOrCommet = TRUE;
 		return 0; 
 	}
@@ -57,38 +57,3 @@ int parseCommand(char* commandLine, parsedCommand_p command ){
 void freeParsedCommand(parsedCommand_p command){
 	free(command);
 }
-	/*
-	i=0; 
-
-	while (arguments[i] != NULL){
-
-		if (insideWordFlag == 0 && isspace(arguments[i]) != 0){
-			i++; 
-			continue; 
-		}
-
-		if (insideWordFlag != 0 && isspace(arguments[i]) != 0){
-			return -1; 
-
-		i++; 
-	}
-
-
-	extracting arguments.
-	  setting command struct. */
- 
-
-/*
-char ** buildArgList(char * arguments){
-	int i; 
-	char lastcha, insideWordFlag;
-
-	 char * token = strtok(string, " ");
-   // loop through the string to extract all other tokens
-   while( token != NULL ) {
-   		while(){}
-      printf( " %s\n", token ); //printing each token
-      token = strtok(NULL, " ");
-   }
-
-}*/

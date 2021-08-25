@@ -38,16 +38,17 @@ int firstIteration(FILE* fp, tuMem_p tm, symbolsTable_p symbols){
             freeParsedCommand(command);
             return errorStatus; 
         }
-        if (command -> isEmptyOrCommet == TRUE){ freeParsedCommand(command);  continue; }
+        if (command -> isEmptyOrCommet == TRUE){ freeParsedCommand(command);  
+        continue; }
         type = getCommandType(command -> commandName); 
         if (command -> hasLabel == TRUE && type == Data) {
             currentSymbol = newSymbol(command->label, tm -> DC, DATA_MASK); 
-            if (currentSymbol == NULL){printf("Couldn't create symbol\n"); freeParsedCommand(command); continue; }
+            if (currentSymbol == NULL){printf("Invalid symbol %s on line: %u\n", command->label, lineCounter); freeParsedCommand(command); continue; }
             errorStatus = addSymbol(symbols, currentSymbol, FALSE);
         }
           if (command -> hasLabel == TRUE && type == Instruction) {
             currentSymbol = newSymbol(command->label, ic, CODE_MASK); 
-            if (currentSymbol == NULL){printf("Couldn't create symbol\n"); freeParsedCommand(command);  continue; }
+            if (currentSymbol == NULL){printf("Invalid symbol %s on line: %u\n", command->label, lineCounter); freeParsedCommand(command);  continue; }
             errorStatus = addSymbol(symbols, currentSymbol, FALSE);
         }        
     
@@ -67,7 +68,7 @@ int firstIteration(FILE* fp, tuMem_p tm, symbolsTable_p symbols){
                 externLable = trimWord(command -> arguments);
                 if (externLable == NULL){ printf("Not a valid label on line %d \n", lineCounter); isValidRun = FALSE;  freeParsedCommand(command); continue;}
                 currentSymbol = newSymbol(externLable, 0, EXTERNAL_MASK); 
-                if (currentSymbol == NULL){printf("Couldn't create symbol\n"); freeParsedCommand(command);  continue; }
+                if (currentSymbol == NULL){printf("Invalid symbol %s on line: %u\n", command->label, lineCounter); freeParsedCommand(command);  continue; }
                 errorStatus = addSymbol(symbols, currentSymbol, FALSE);
                 if (errorStatus != 0){ printf("Couldn't declare lablel %s extern on line %d \n", externLable, lineCounter); freeParsedCommand(command);  continue; }
                 break; 
@@ -79,7 +80,6 @@ int firstIteration(FILE* fp, tuMem_p tm, symbolsTable_p symbols){
 
         freeParsedCommand(command);
     }
-    printf("%d\n", isValidRun);
     increaseDataCounter(symbols, ic);
     if (isValidRun != TRUE) {return -1;}
     return 0; 
@@ -88,7 +88,7 @@ int firstIteration(FILE* fp, tuMem_p tm, symbolsTable_p symbols){
 
 int secondIteration(FILE* fp, tuMem_p tm ,symbolsTable_p symbols){
     char currentLine [MAX_LINE_SIZE + 1];
-    int lineCounter = 0, errorStatus = 0; 
+    size_t lineCounter = 0, errorStatus = 0; 
     char* tmpLabel; 
     char isValidRun = TRUE; 
     commandType type; 
@@ -102,7 +102,7 @@ int secondIteration(FILE* fp, tuMem_p tm ,symbolsTable_p symbols){
 
         errorStatus = parseCommand(currentLine, command);
         if (errorStatus != 0){
-            printf("Error while parsing command on line %d \n", lineCounter);
+            printf("Error while parsing command on line %u \n", lineCounter);
             isValidRun = FALSE; 
             freeParsedCommand(command);
             continue; 
@@ -112,7 +112,10 @@ int secondIteration(FILE* fp, tuMem_p tm ,symbolsTable_p symbols){
 
         if (type == Instruction){
             currentInstruction = translateInstruction(command, symbols, tm);
-            if (currentInstruction == NULL){ printf("couldn't translate instruction on line: %d\n", lineCounter); isValidRun = FALSE;  freeParsedCommand(command); continue; }
+            if (currentInstruction == NULL){
+                 printf("couldn't translate instruction %s with args: %s on line: %u\n", command->commandName,command->arguments ,lineCounter);
+                  isValidRun = FALSE;  freeParsedCommand(command); continue; 
+                  }
             errorStatus = appendInstruction(tm, currentInstruction);
         }
         if (errorStatus != 0){
@@ -126,12 +129,11 @@ int secondIteration(FILE* fp, tuMem_p tm ,symbolsTable_p symbols){
             tmpLabel = trimWord(command -> arguments);
             if (tmpLabel == NULL){ printf("Not a valid label on line %d \n", lineCounter); isValidRun = FALSE;  freeParsedCommand(command); continue;}
             errorStatus = makeEntry(symbols, tmpLabel);
-            if (errorStatus != 0 ){printf("Error while making the lable %s as entry on line %d\n ", tmpLabel, lineCounter);}
+            if (errorStatus != 0 ){printf("Error while making the lable %s as entry on line %u\n ", tmpLabel, lineCounter);}
         }
             
         if (errorStatus != 0){ isValidRun = FALSE;  freeParsedCommand(command); continue;}
      }
-     printf("%d\n", isValidRun);
      if (isValidRun != TRUE){return -1;}
     return 0; 
 }

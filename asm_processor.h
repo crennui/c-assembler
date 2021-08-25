@@ -8,7 +8,12 @@
 /*The function receives a File pointer, symbols table and a TuMem (translation unit memory) pointer 
   It updates the TuMem and symbols table according to the input file.
   The function returns 0 if no error accrued and error code otherwise.
-  It uses the first and second iteration functions below */
+  It uses the first and second iteration functions below.
+  Improtant to mention that error related to second itaration will only appear 
+  if the first iteration finishes succesfuly, this is a known bug. 
+  So something like invalid register will only appear if now error happaned on 
+  first iteration. 
+  */
 int processFile(FILE* fp, tuMem_p tm, symbolsTable_p symbols);
 
 /*The first iteration does two main thigs: 

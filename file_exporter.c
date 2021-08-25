@@ -27,7 +27,15 @@ char* generateNewFileName(char* fileName, char* newSuffix){
   all the parsed commands and data and write it into a file called <fileName>.ob
   plus it will look at the symbols table, if entries exists it will write a file called 
   <fileName>.ent . if extern symbols exist it will write a file called <fileName>.ext
-  with all the external symbols. returns -1 if fails and 0 if succeded.*/
+  with all the external symbols. returns -1 if fails and 0 if succeded.
+  
+  because the commands are bitfields structs I cannot just use pointer on it members 
+  plus I cannot convert the struct into a char* because gcc does not gerantee that the order
+  of the fields inside the struct will stay the same. 
+  so I used bitwise manipulation to extranct the values into and a 32 int 
+  this code only works on 32 bit systems plus to print each by from the result
+  int I do rely on the fact that I am running on a litte indian machine. 
+  */
 int exportToFiles(char* fileName, tuMem_p translationUnit, symbolsTable_p symbolsTable){
     char* newFileOBName = generateNewFileName(fileName, OB_FILE_SUFFIX);
     unsigned char* currentCommandMem; 
@@ -148,13 +156,13 @@ char exportExternFile(char* fileName, symbolsTable_p symbols){
     Entry_p *buckets = symbols->_private_table->buckets;
     Entry_p currEntry; 
     symbol_p currSymbol;
-    FILE *fptr;
+    FILE *fptr = NULL;
     /*TODO make it less nested*/
     for(i=0;i<BUCKETS_IN_TABLE; i++){
         currEntry = buckets[i];
         while(currEntry != NULL){
             currSymbol = currEntry->value;
-            if (((currSymbol->attributes)&EXTERNAL_MASK) > 0){
+            if (((currSymbol->attributes)&EXTERNAL_MASK) > 0 && currSymbol->instances != NULL){
                 if (hadExternFlag == FALSE){
                     fptr = fopen(newExternFileName, "w");
                     if(fptr == NULL){ free(newExternFileName); return -1;}
@@ -184,7 +192,7 @@ char exportEntryFile(char* fileName, symbolsTable_p symbols){
     Entry_p *buckets = symbols->_private_table->buckets;
     Entry_p currEntry; 
     symbol_p currSymbol;
-    FILE *fptr;
+    FILE *fptr = NULL;
     /*TODO make it less nested*/
     for(i=0;i<BUCKETS_IN_TABLE; i++){
         currEntry = buckets[i];
