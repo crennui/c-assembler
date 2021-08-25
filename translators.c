@@ -192,6 +192,10 @@ command_p jmpTranslator(parsedCommand_p parsedCommand, int funct, int opcode, sy
         if (symbol1 == NULL){ errorCode = INVALID_LABEL; freeCommand(newCmd); return NULL; } 
         reg = FALSE; 
         val = symbol1->location; /* because it is a symbol location no validation for range is needed */
+        if ((symbol1->attributes & EXTERNAL_MASK)>0){
+          if(addSymbolInstance(symbol1, location) == -1){freeCommand(newCmd); return NULL;};
+        }
+
     }
 
     newCmd -> commandType = J_COMMAND_TYPE;
@@ -219,6 +223,9 @@ command_p oneLableTranslator(parsedCommand_p parsedCommand, int funct, int opcod
     symbol1 = getSymbol(symbols, args[0]);
     if (symbol1 == NULL){ errorCode = INVALID_LABEL; freeCommand(newCmd); return NULL; } 
     val = symbol1->location; /* because it is a symbol location no validation for range is needed */
+    if ((symbol1->attributes & EXTERNAL_MASK)>0){
+        if(addSymbolInstance(symbol1, location) == -1){freeCommand(newCmd); return NULL;};
+    }
 
     newCmd -> commandType = J_COMMAND_TYPE;
     newCmd -> command.cmd_j.reg = reg;

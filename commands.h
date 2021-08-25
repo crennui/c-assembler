@@ -7,6 +7,15 @@
 #define I_COMMAND_TYPE 2
 #define J_COMMAND_TYPE 3
 
+/*
+    This file holds few structs the help to describe each command 
+    - command type enum (self explenatory).
+    - ParsedCommand is a general way the program parses one line and help for the desicion flow of the program.
+    - There are bitfield structs that describes each command type 
+    - all of the command type structs are in a union call General command so I can 
+    - store each command without caring about it's type. 
+*/
+
 typedef enum {Data = 1, Instruction = 2, ExternDirective = 3, EntryDirective = 4} commandType; 
 
 struct ParsedCommand {
@@ -58,9 +67,14 @@ struct Command{
 };
 typedef struct Command* command_p; 
 
+/* Allocates new memory for a Command struct, NULL if fails*/
 command_p newCommand(); 
+
+/*Frees one command node.*/
 void freeCommand(command_p cmd);
 
+/*Frees all command nodes the are connected this the given command node.*/
+void freeCommands(command_p cmd); 
 
 
 #endif

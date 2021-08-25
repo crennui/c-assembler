@@ -1,7 +1,11 @@
 #ifndef ERROS
 #define ERROs
 
-
+/*
+    The plan was to do something like my own errno so could 
+    know what was the problem and print a better error message for each erro 
+    but because of time limitation it is not finised. 
+*/
 #define UNFAMILIAR_DATA_TYPE 410
 #define INVALID_STRING 409
 #define OUT_OF_RANGE_NUMBER 408

@@ -144,6 +144,7 @@ char exportExternFile(char* fileName, symbolsTable_p symbols){
     char* newExternFileName = generateNewFileName(fileName, EXTERN_FILE_SUFFIX);
     char externLineBuffer[60];
     char hadExternFlag = FALSE;
+    symbolInstance_p tmpInstance;
     Entry_p *buckets = symbols->_private_table->buckets;
     Entry_p currEntry; 
     symbol_p currSymbol;
@@ -159,9 +160,12 @@ char exportExternFile(char* fileName, symbolsTable_p symbols){
                     if(fptr == NULL){ free(newExternFileName); return -1;}
                     hadExternFlag = TRUE;
                     }
-
-                sprintf(externLineBuffer,"%s %04u\n" ,currSymbol->name, currSymbol-> location);
+                tmpInstance = currSymbol->instances;
+                while (tmpInstance != NULL){
+                sprintf(externLineBuffer,"%s %04u\n" ,currSymbol->name, tmpInstance->address);
                 fputs(externLineBuffer, fptr);
+                tmpInstance = tmpInstance->next;
+                }
             }
             currEntry = currEntry->next; 
         }

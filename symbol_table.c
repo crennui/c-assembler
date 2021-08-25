@@ -37,12 +37,18 @@ void freeInstances(symbolInstance_p instance){
     free(instance);
 }
 
+symbolInstance_p newSymbolInstance(size_t address){
+    symbolInstance_p newInstance = malloc(sizeof(struct SymbolInstance));
+    if (newInstance == NULL){errorCode = MEMORY_ALLOCATION_ERROR_CODE; return NULL;}
+    newInstance -> address = address;
+    newInstance -> next = NULL; 
+    return newInstance; 
+}
 
 int addSymbolInstance(symbol_p symbol, size_t address){
-    symbolInstance_p newInstance = malloc(sizeof(struct SymbolInstance));
+    symbolInstance_p newInstance = newSymbolInstance(address);
     symbolInstance_p tmp;
     if (newInstance == NULL){errorCode = MEMORY_ALLOCATION_ERROR_CODE; return -1;}
-    newInstance -> address = address;
     if (symbol->instances == NULL){
         symbol->instances = newInstance;
         return 0;
@@ -67,8 +73,26 @@ symbolsTable_p newSymbolTable(){
     return symbolsTable; 
 }
 
+void freeSymbol(symbol_p symbol){
+    if(symbol == NULL){return;}
+    freeInstances(symbol->instances);
+    free(symbol);
+}
+
 /*free table memory and all beneath*/
 void freeSymbolTable(symbolsTable_p symbolsTable){
+    Entry_p *bucket = symbolsTable -> _private_table-> buckets;
+    size_t i;
+    Entry_p currEntry;
+    symbol_p currSymbol; 
+    for (i=0;i<BUCKETS_IN_TABLE;i++){
+        currEntry = bucket[i];
+        while(currEntry != NULL){
+            currSymbol = currEntry->value;
+            freeSymbol(currSymbol);
+            currEntry = currEntry->next;
+        }
+    }
     freeHashTable(symbolsTable -> _private_table);
     free(symbolsTable);
 }

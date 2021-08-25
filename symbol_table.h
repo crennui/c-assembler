@@ -13,11 +13,10 @@
 /*---------------------------------------*/
 struct SymbolInstance{
     size_t address;
-    struct SymbolInstance *next; 
+    struct SymbolInstance* next; 
 }; 
 typedef struct SymbolInstance* symbolInstance_p;
 void freeInstances(symbolInstance_p instance);
-int addSymbolInstance(symbol_p symbol, size_t address);
 
 struct Symbol {
     char name[MAX_LABEL_SIZE];
@@ -27,6 +26,9 @@ struct Symbol {
 }; 
 
 typedef struct Symbol* symbol_p;
+
+int addSymbolInstance(symbol_p symbol, size_t address);
+void freeSymbol(symbol_p symbol);
 /*---------------------------------------*/
 
 /*create new lable funcion*/

@@ -43,3 +43,9 @@ int appendData(tuMem_p tm, dataBlock_p dataBlock){
     tm -> DC += dataBlock -> size; 
     return 0; 
 }
+
+void freeTuMem(tuMem_p tm){
+    freeCommands(tm->firstCommend);
+    freeDataBlocks(tm->firstDataBlock);
+    free(tm);
+}

@@ -33,5 +33,6 @@ tuMem_p newTuMem();
 
 int appendInstruction(tuMem_p tm, command_p instruction); 
 int appendData(tuMem_p tm, dataBlock_p dataBlock);  
+void freeTuMem(tuMem_p); 
 
 #endif
